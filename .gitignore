@@ -1,0 +1,21 @@
+*.dep
+*.obj
+*.swp
+*.kate-swp
+*.*~
+*thumbs.db
+*.cmake
+
+/build/main
+CMakeCache.txt
+
+CMakeFiles/
+
+# compiled object files
+*.o
+
+# compiled dynamic libraries
+*.so
+
+# compiled static libraries
+*.a

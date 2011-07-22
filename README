@@ -1,0 +1,21 @@
+My code ispired from the book OpenGL Programming Guide: The Official Guide to Learning OpenGL, Versions 3.0 and 3.1 (7th Edition).
+
+ISBN-13: 978-0321552624
+
+
+Prerequsities (on Ubuntu):
+gcc
+cmake >= 2.8.2
+libsdl1.2.dev
+
+and an openGL capable card.
+
+Compilation: In the same directory where this README is run:
+cmake . && make
+
+To execute:
+./bin/main
+
+Enjoy!
+
+License: Public Domain
