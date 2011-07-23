@@ -6,7 +6,7 @@
 *thumbs.db
 *.cmake
 
-/build/main
+/bin/*
 CMakeCache.txt
 
 CMakeFiles/
