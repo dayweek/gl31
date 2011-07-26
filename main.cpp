@@ -14,6 +14,44 @@ float frame = 0;
 Uint32 timeMile = 0;
 float framesToPrint = 0.0;
 
+GLfloat vertices[12] = {
+	1,1,0,
+	1,-1,0,
+	-1,-1,0,
+	-1,1,0
+};
+GLfloat colors[12] = {
+	0.5,0.5,0.5,
+	0,1,0,
+	0,0,1,
+	0,1,1
+};
+
+class Model {
+	public:
+	Model() {
+
+	}
+	void drawPrim() {
+		glBegin(GL_QUADS);
+		glColor3fv(colors);
+		glEdgeFlag(GL_FALSE);
+		glVertex3fv(vertices);
+		glEdgeFlag(GL_TRUE);
+		//glColor3fv(colors+3);
+		glVertex3fv(vertices+3);
+		//glColor3fv(colors+6);
+		glVertex3fv(vertices+6);
+		//glColor3fv(colors+9);
+		glVertex3fv(vertices+9);
+		glEnd();
+	}
+	~Model() {
+	}
+
+};
+Model* model; 
+
 string getDigits ( float fps ) {
 	int f = fps;
 	string digits;
@@ -90,6 +128,30 @@ static void draw_screen ( void ) {
 	}
 	frame++;
 
+	// viewing
+		glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-10,10,-10,10,1,-1);
+		glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	glPolygonMode(GL_BACK, GL_LINE);
+
+	glClearColor(0,0,0,0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	model->drawPrim();
+	glTranslatef(2,0,0);
+		glBegin(GL_QUADS);
+		glColor3fv(colors);
+		glVertex3fv(vertices);
+		//glColor3fv(colors+3);
+		glVertex3fv(vertices+3);
+		//glColor3fv(colors+6);
+		glEdgeFlag(GL_FALSE);
+		glVertex3fv(vertices+6);
+		//glColor3fv(colors+9);
+		glEdgeFlag(GL_TRUE);
+		glVertex3fv(vertices+9);
+		glEnd();
 	glFlush();
 
 	/*
@@ -195,6 +257,8 @@ int main ( int argc, char* argv[] ) {
 				SDL_GetError( ) );
 		quit ( 1 );
 	}
+
+	model = new Model();
 
 
 	/*
